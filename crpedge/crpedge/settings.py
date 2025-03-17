@@ -94,7 +94,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'crp_backend',
         'USER': 'root',
-        'PASSWORD': 'Classmate29#',
+        'PASSWORD': '',
         'HOST': 'localhost',  # Or the IP address of your MySQL server
         'PORT': '3306',  # Default MySQL port
         'OPTIONS': {
@@ -154,7 +154,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'damodarpurohit29@gmail.com'
-EMAIL_HOST_PASSWORD = 'eoyr xuon hwdp kyry'
+EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = 'Crp damodarpurohit29@gmail.com'
 # # #
 JAZZMIN_SETTINGS = {
