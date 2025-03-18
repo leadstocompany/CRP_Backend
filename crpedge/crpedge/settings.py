@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,20 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(a45_1sz+hgoo()zhzke97tof(7qse9^te5k)ew$mwbn0%+$z!'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ["bobby@20.193.138.40", "localhost"]
+SECRET_KEY = config("SECRET_KEY")
+DEBUG = config("DEBUG", default=False, cast=bool)
+ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'jazzmin',
-    #  'admin_interface',
-    # 'colorfield',
     'import_export',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,15 +48,14 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_totp',
     'session_security',
 ]
-# X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',  # ✅ Ensure this is before session security
-    'session_security.middleware.SessionSecurityMiddleware',  # ✅ Move this below AuthenticationMiddleware
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'session_security.middleware.SessionSecurityMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_otp.middleware.OTPMiddleware',
@@ -95,23 +91,15 @@ WSGI_APPLICATION = 'crpedge.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'crp_backend',
-        'USER': 'root',
-        'PASSWORD': 'RadheKrishna29#',
-        'HOST': 'localhost',  # Or the IP address of your MySQL server
-        'PORT': '3306',  # Default MySQL port
-        'OPTIONS': {
-            'charset': 'utf8mb4',  # Recommended character set
-        },
+    "default": {
+        "ENGINE": config("DB_ENGINE", default="django.db.backends.mysql"),
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("DB_PASSWORD"),
+        "HOST": config("DB_HOST", default="localhost"),
+        "PORT": config("DB_PORT", default="3306"),
     }
 }
 
