@@ -27,4 +27,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/master/', include('master.urls')),  # Your other API endpoints
     path('api/transactions/', include('transactions.urls')),
+path('session-security/', include('session_security.urls')),  # ✅ Add this line
+
 ]

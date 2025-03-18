@@ -18,12 +18,6 @@ class DocType(models.Model):
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="doc_modified_by")
     modified_date = models.DateTimeField(auto_now=True)
 
-    # def save(self, *args, **kwargs):
-    #     """ Auto-increment the next_doc_number if it's not set. """
-    #     if self.next_doc_number is None and self.starting_document_number:
-    #         self.next_doc_number = self.starting_document_number + 1
-    #     super().save(*args, **kwargs)
-
     def __str__(self):
         return f"{self.document_type_code} - {self.document_type_name}"
 class DocumentHistory(models.Model):
@@ -167,16 +161,6 @@ class Bank(models.Model):
                                     related_name="modified_banks")
     modified_date = models.DateTimeField(auto_now=True)
 
-    # def save(self, *args, **kwargs):
-    #     # Capture the current user dynamically from the request context
-    #     user = kwargs.pop('user', None)
-    #     if user and isinstance(user, User):
-    #         if not self.pk:  # On create
-    #             self.created_by = user.username
-    #             self.company_code = user.profile.company_code  # Assuming a user profile with company_code
-    #         self.modified_by = user.username
-    #     super().save(*args, **kwargs)
-
     def __str__(self):
         return f"{self.bank_code} - {self.bank_name}"
 
@@ -201,15 +185,6 @@ class BankBranch(models.Model):
         verbose_name = "Bank Branch"
         verbose_name_plural = "Bank Branches"
 
-    # def save(self, *args, **kwargs):
-    #     # Capture the current user dynamically from the request context
-    #     user = kwargs.pop('user', None)
-    #     if user and isinstance(user, User):
-    #         if not self.pk:  # On create
-    #             self.created_by = user.username
-    #             self.company_code = user.profile.company_code  # Assuming a user profile with company_code
-    #         self.modified_by = user.username
-    #     super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.branch_code} - {self.branch_name} ({self.bank.bank_name})"
@@ -228,16 +203,6 @@ class CreditFacilityMaster(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="credit_modified_by")
     modified_date = models.DateTimeField(auto_now=True)
-
-    # def save(self, *args, **kwargs):
-    #     # Capture the current user dynamically from the request context
-    #     user = kwargs.pop('user', None)
-    #     if user and isinstance(user, User):
-    #         if not self.pk:  # On create
-    #             self.created_by = user.username
-    #             self.company_code = user.profile.company_code  # Assuming a user profile with company_code
-    #         self.modified_by = user.username
-    #     super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.credit_facility_code} - {self.credit_facility_name}"
@@ -273,15 +238,7 @@ class SubFilter1(models.Model):
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="subfilter1_modified_by")
     modified_date = models.DateTimeField(auto_now=True)
 
-    # def save(self, *args, **kwargs):
-    #     # Capture the current user dynamically from the request context
-    #     user = kwargs.pop('user', None)
-    #     if user and isinstance(user, User):
-    #         if not self.pk:  # On create
-    #             self.created_by = user.username
-    #             self.company_code = user.profile.company_code  # Assuming a user profile with company_code
-    #         self.modified_by = user.username
-    #     super().save(*args, **kwargs)
+
 
     def __str__(self):
         return f"{self.sub_filter_code} - {self.sub_filter_desc}"
