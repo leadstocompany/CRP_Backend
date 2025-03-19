@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
-
+import dj_database_url
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -95,23 +95,19 @@ WSGI_APPLICATION = 'crpedge.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": config("DB_ENGINE", default='django.db.backends.postgresql'),
-#         "NAME": config("DB_NAME"),
-#         "USER": config("DB_USER"),
-#         "PASSWORD": config("DB_PASSWORD"),
-#         "HOST": config("DB_HOST", default="localhost"),
-#         "PORT": config("DB_PORT", default="3306"),
-#     }
-# }
-import dj_database_url
-
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get('DATABASE_URL')
     )
 }
+
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default='postgresql://crp_backend_user:3SbDnLxftzU6peJcOjLGS8bvdRpv3vCu@dpg-cvd31m3tq21c73a8kjqg-a.singapore-postgres.render.com/crp_backend'
+#     )
+# }
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',

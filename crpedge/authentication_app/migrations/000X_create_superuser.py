@@ -3,10 +3,10 @@ from django.contrib.auth.models import User
 
 def create_superuser(apps, schema_editor):
     User = apps.get_model('auth', 'User')
-    if not User.objects.filter(username='crpadmin').exists():
+    if not User.objects.filter(username='admin').exists():
         User.objects.create_superuser(
-            username='crpadmin',
-            password='crpadmin123@',
+            username='admin',
+            password='admin123#',
             email='admin@example.com'
         )
 
