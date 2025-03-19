@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from django.urls import path, include
 
 # def redirect_to_admin(request):
 #     return redirect('/admin/')
@@ -29,4 +32,7 @@ urlpatterns = [
     path('api/transactions/', include('transactions.urls')),
 path('session-security/', include('session_security.urls')),  # ✅ Add this line
 
+
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
