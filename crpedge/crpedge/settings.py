@@ -107,7 +107,7 @@ DATABASES = {
 #         default='postgresql://crp_backend_user:3SbDnLxftzU6peJcOjLGS8bvdRpv3vCu@dpg-cvd31m3tq21c73a8kjqg-a.singapore-postgres.render.com/crp_backend'
 #     )
 # }
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -154,8 +154,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
+# Directory where static files will be collected
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Additional directories where Django looks for static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -219,82 +226,3 @@ JAZZMIN_SETTINGS = {
     "default_icon_parents": "fas fa-folder",
     "default_icon_children": "fas fa-file",
 }
-
-# JAZZMIN_SETTINGS = {
-#
-#     "site_title": "CRP Admin",
-#     "site_header": "Cash Resource Planning",
-#     "welcome_sign": "Welcome to CRP Admin",
-#     "show_sidebar": True,
-#     "navigation_expanded": False,  # Collapse the sidebar by default
-#
-#     "icons": {
-#         "auth": "fas fa-users-cog",
-#         "auth.user": "fas fa-user",
-#         "auth.Group": "fas fa-users",
-#     },
-#     "show_ui_builder": True,
-#
-#     "hide_apps": [],  # Keep all apps visible
-#     "hide_models": [],
-#
-#     # Collapsible menu structure
-#     "order_with_respect_to": [
-#         "auth",
-#         "crp_admin",
-#         "masters",
-#         "transactions",
-#         "reports",
-#         "payments",
-#     ],
-#
-#     "custom_links": {
-#         "masters": [{
-#             "name": "Master Data",
-#             "url": "admin:app_list",
-#             "icon": "fas fa-database",
-#             "permissions": ["masters.view_master"],
-#         }],
-#     },
-#     "theme": "DARKLY",
-#     "dark_mode_theme": "cyborg",
-#    "icons": {
-#         "auth": "fas fa-users-cog",
-#         "auth.user": "fas fa-user",
-#         "auth.Group": "fas fa-users",
-#         "master": "fas fa-database",
-#         "company": "fas fa-building",
-#     },
-#
-#     # Collapsible section configuration
-#     "side_menu_items": [
-#         {
-#             "app": "masters",
-#             "label": "Master",
-#             "icon": "fas fa-cogs",
-#             "models": [
-#                 "masters.bankbranches",
-#                 "masters.banks",
-#                 "masters.creditfacilitymasters",
-#                 "masters.currencycodes",
-#                 "masters.currencyrates",
-#                 "masters.doctypes",
-#                 "masters.filter1s",
-#                 "masters.filter2s",
-#                 "masters.glchartofaccounts",
-#                 "masters.maincategorys",
-#                 "masters.parties",
-#                 "masters.projects",
-#                 "masters.subcategorys",
-#                 "masters.subfilter1s",
-#             ],
-#         },
-#         {
-#             "app": "auth",
-#             "label": "Authentication",
-#             "icon": "fas fa-users",
-#             "models": ["auth.user", "auth.group"],
-#         },
-#
-#     ],
-# }
