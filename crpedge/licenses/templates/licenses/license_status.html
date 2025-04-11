@@ -1,0 +1,12 @@
+{% if license %}
+    <h2>Your License Details:</h2>
+    <p>License Key: {{ license.license_key }}</p>
+    <p>License Type: {{ license.license_type.name }}</p>
+    <p>Issued Date: {{ license.issued_date }}</p>
+    <p>Expiry Date: {{ license.expiry_date }}</p>
+    <p>Status: {% if license.is_active %} Active {% else %} Inactive {% endif %}</p>
+    <a href="{% url 'license-renewal' %}">Renew License</a>
+{% else %}
+    <h2>No Active License Found</h2>
+    <a href="{% url 'license-renewal' %}">Purchase/Renew License</a>
+{% endif %}

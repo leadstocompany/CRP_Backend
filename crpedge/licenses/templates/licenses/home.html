@@ -1,0 +1,6 @@
+<h2>Licenses</h2>
+<ul>
+    {% for license in licenses %}
+        <li>{{ license.license_key }} - {{ license.license_type.name }} - {{ license.is_active }}</li>
+    {% endfor %}
+</ul>
