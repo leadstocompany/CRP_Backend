@@ -71,7 +71,7 @@ class CompanyUser(models.Model):
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='member')
 
     # 2FA Secret Key
-    otp_secret_key = models.CharField(max_length=16, blank=True, null=True)
+    otp_secret_key = models.CharField(max_length=32, blank=True, null=True)
 
     def generate_otp_secret(self):
         if not self.otp_secret_key:

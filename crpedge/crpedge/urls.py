@@ -30,9 +30,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/master/', include('master.urls')),  # Your other API endpoints
     path('api/transactions/', include('transactions.urls')),
-path('session-security/', include('session_security.urls')),  # ✅ Add this line
-
+    # path('download/', include('report.urls')),
+    path('session-security/', include('session_security.urls')),  #  Add this line
+    path('api/licenses/', include('licenses.api.urls')),
 
 ]
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# if settings.DEBUG:
+#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
